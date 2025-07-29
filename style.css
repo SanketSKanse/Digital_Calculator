@@ -161,3 +161,68 @@
             background: var(--button-hover);
             box-shadow: 0 0 15px var(--glow-color);
         }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 18px;
+            background: var(--button-bg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background: var(--button-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:active {
+            background: var(--button-active);
+            transform: translateY(0);
+        }
+
+        .btn.operator {
+            background: linear-gradient(135deg, var(--accent-color), rgba(0, 255, 255, 0.8));
+            color: var(--primary-bg);
+            border-color: var(--accent-color);
+        }
+
+        .btn.equals {
+            background: linear-gradient(135deg, var(--success-color), rgba(0, 255, 128, 0.8));
+            color: var(--primary-bg);
+        }
+
+        .btn.zero {
+            grid-column: span 2;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        .btn:active::before {
+            width: 100px;
+            height: 100px;
+        }
