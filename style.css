@@ -138,3 +138,26 @@
             text-align: right;
             text-shadow: 0 0 10px var(--glow-color);
         }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .control-btn {
+            flex: 1;
+            padding: 12px;
+            background: var(--button-bg);
+            border: 1px solid var(--accent-color);
+            border-radius: 10px;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .control-btn:hover {
+            background: var(--button-hover);
+            box-shadow: 0 0 15px var(--glow-color);
+        }
