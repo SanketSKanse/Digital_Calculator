@@ -1,57 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Digital Calculator</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="overlay" id="overlay" ></div>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="overlay" id="overlay" onclick="closeHistory()"></div>
+    
     <div class="app-container">
-        <div class="calculator">
-            <div class="header">
-                <h1 class="title">Sanket's Calculator</h1>
-                <button class="theme-toggle">🌙 Dark</button>
-            </div>
-
-            <div class="display">
-                <div class="expression" id="expression"></div>
-                <div class="result" id="result">0</div>
-            </div>
-
-            <div class="controls">
-                <button class="control-btn" >📋 Copy</button>
-                <button class="control-btn" >📜 History</button>
-                <button class="control-btn" >AC</button>
-                <button class="control-btn" >⌫</button>
-            </div>
-
-            <div class="button-grid">
-                <button class="btn operator">(</button>
-                <button class="btn operator">)</button>
-                <button class="btn operator">%</button>
-                <button class="btn operator">÷</button>
-                
-                <button class="btn">7</button>
-                <button class="btn">8</button>
-                <button class="btn">9</button>
-                <button class="btn operator">x</button>
-                
-                <button class="btn">4</button>
-                <button class="btn">5</button>
-                <button class="btn">6</button>
-                <button class="btn operator">-</button>
-                
-                <button class="btn">1</button>
-                <button class="btn">2</button>
-                <button class="btn">3</button>
-                <button class="btn operator">+</button>
-                
-                <button class="btn zero">0</button>
-                <button class="btn">.</button>
-                <button class="btn equals">=</button>
-            </div>
+      <div class="calculator">
+        <div class="header">
+          <h1 class="title">Sanket's Calculator</h1>
+          <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
         </div>
-</body>
+
+        <div class="display">
+          <div class="expression" id="expression"></div>
+          <div class="result" id="result">0</div>
+        </div>
+
+        <div class="controls">
+          <button class="control-btn">📋 Copy</button>
+          <button class="control-btn">📜 History</button>
+          <button class="control-btn">AC</button>
+          <button class="control-btn">⌫</button>
+        </div>
+
+        <div class="button-grid">
+          <button class="btn operator">(</button>
+          <button class="btn operator">)</button>
+          <button class="btn operator">%</button>
+          <button class="btn operator">÷</button>
+
+          <button class="btn">7</button>
+          <button class="btn">8</button>
+          <button class="btn">9</button>
+          <button class="btn operator">x</button>
+
+          <button class="btn">4</button>
+          <button class="btn">5</button>
+          <button class="btn">6</button>
+          <button class="btn operator">-</button>
+
+          <button class="btn">1</button>
+          <button class="btn">2</button>
+          <button class="btn">3</button>
+          <button class="btn operator">+</button>
+
+          <button class="btn zero">0</button>
+          <button class="btn">.</button>
+          <button class="btn equals">=</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
 </html>
