@@ -84,4 +84,30 @@ function isIncompleteExpression(expr) {
   return false;
 }
 
+// Expression management
 
+function addToExpression(value) {
+    animateButton();
+    
+    if (["+", "-", "*", "/", "%"].includes(value)) {
+        
+        if (currentExpression && !["+", "-", "*", "/", "%", "("].includes(currentExpression.slice(-1))) {
+            currentExpression += value;
+        }
+    }
+    else {
+        currentExpression += value;
+    }
+    
+    updateDisplay();
+}
+
+function deleteLast() {
+    currentExpression = currentExpression.slice(0, -1);
+    updateDisplay();
+}
+
+function clearAll() {
+    currentExpression = "";
+    updateDisplay();
+}
