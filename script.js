@@ -111,3 +111,33 @@ function clearAll() {
     currentExpression = "";
     updateDisplay();
 }
+
+// Calculation logic
+
+function calculate() {
+    if (!currentExpression) return;
+    
+    try {
+        // Check if expression is incomplete (ends with operator)
+        if (isIncompleteExpression(currentExpression)) {
+            animateError();
+            const resultEl = document.getElementById('result');
+            resultEl.textContent = 'Error';
+            resultEl.classList.add('error');
+            return;
+        }
+        
+        const result = evaluateExpression(currentExpression);
+        
+        if (result !== null && isFinite(result)) {
+            addToHistory(currentExpression, result);
+            currentExpression = result.toString();
+            updateDisplay();
+            animateSuccess();
+        } else {
+            throw new Error('Invalid calculation');
+        }
+    } catch (e) {
+        animateError();
+    }
+}
