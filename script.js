@@ -121,9 +121,9 @@ function calculate() {
         // Check if expression is incomplete (ends with operator)
         if (isIncompleteExpression(currentExpression)) {
             animateError();
-            const resultEl = document.getElementById('result');
-            resultEl.textContent = 'Error';
-            resultEl.classList.add('error');
+            const resultEl = document.getElementById("result");
+            resultEl.textContent = "Error";
+            resultEl.classList.add("error");
             return;
         }
         
@@ -135,9 +135,47 @@ function calculate() {
             updateDisplay();
             animateSuccess();
         } else {
-            throw new Error('Invalid calculation');
+            throw new Error("Invalid calculation");
         }
     } catch (e) {
         animateError();
     }
 }
+
+
+function evaluateExpression(expr) {
+    try {
+        // Replace display symbols with actual operators
+        let cleanExpr = expr
+            .replace(/×/g, "*")
+            .replace(/÷/g, "/")
+            .replace(/[^0-9+\-*/.()%\s]/g, "");
+        
+        // Handle percentage
+        cleanExpr = cleanExpr.replace(/(\d+(?:\.\d+)?)%/g, "($1/100)");
+        
+        // Validate expression
+        if (!isValidExpression(cleanExpr)) {
+            throw new Error("Invalid expression");
+        }
+        
+        // Use Function constructor instead of eval for safety
+        return Function('"use strict"; return (" + cleanExpr + ")')();
+    } catch (e) {
+        throw new Error("Calculation error");
+    }
+}
+
+function isValidExpression(expr) {
+    // Basic validation to prevent code injection
+    const allowedChars = /^[0-9+\-*/.()%\s]+$/;
+    return allowedChars.test(expr) && expr.trim() !== "";
+}
+
+function formatNumber(num) {
+    if (Number.isInteger(num)) {
+        return num.toString();
+    }
+    return parseFloat(num.toFixed(10)).toString();
+} 
+
