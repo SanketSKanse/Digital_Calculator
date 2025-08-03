@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="overlay" id="overlay" onclick="closeHistory()"></div>
-    
+
     <div class="app-container">
       <div class="calculator">
         <div class="header">
@@ -29,31 +29,32 @@
         </div>
 
         <div class="button-grid">
-          <button class="btn operator">(</button>
-          <button class="btn operator">)</button>
-          <button class="btn operator">%</button>
-          <button class="btn operator">÷</button>
+          <button class="btn operator" onclick="addToExpression('(')">(</button>
+          <button class="btn operator" onclick="addToExpression(')')">)</button>
+          <button class="btn operator" onclick="addToExpression('%')">%</button>
+          <button class="btn operator" onclick="addToExpression('/')">÷</button>
 
-          <button class="btn">7</button>
-          <button class="btn">8</button>
-          <button class="btn">9</button>
-          <button class="btn operator">x</button>
+          <button class="btn" onclick="addToExpression('7')">7</button>
+          <button class="btn" onclick="addToExpression('8')">8</button>
+          <button class="btn" onclick="addToExpression('9')">9</button>
+          <button class="btn operator" onclick="addToExpression('*')">×</button>
 
-          <button class="btn">4</button>
-          <button class="btn">5</button>
-          <button class="btn">6</button>
-          <button class="btn operator">-</button>
+          <button class="btn" onclick="addToExpression('4')">4</button>
+          <button class="btn" onclick="addToExpression('5')">5</button>
+          <button class="btn" onclick="addToExpression('6')">6</button>
+          <button class="btn operator" onclick="addToExpression('-')">-</button>
 
-          <button class="btn">1</button>
-          <button class="btn">2</button>
-          <button class="btn">3</button>
-          <button class="btn operator">+</button>
+          <button class="btn" onclick="addToExpression('1')">1</button>
+          <button class="btn" onclick="addToExpression('2')">2</button>
+          <button class="btn" onclick="addToExpression('3')">3</button>
+          <button class="btn operator" onclick="addToExpression('+')">+</button>
 
-          <button class="btn zero">0</button>
-          <button class="btn">.</button>
-          <button class="btn equals">=</button>
+          <button class="btn zero" onclick="addToExpression('0')">0</button>
+          <button class="btn" onclick="addToExpression('.')">.</button>
+          <button class="btn equals" onclick="calculate()">=</button>
         </div>
       </div>
+      <!--  -->
     </div>
 
     <script src="script.js"></script>
