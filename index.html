@@ -23,7 +23,7 @@
 
         <div class="controls">
           <button class="control-btn">📋 Copy</button>
-          <button class="control-btn">📜 History</button>
+          <button class="control-btn" onclick="toggleHistory()">📜 History</button>
           <button class="control-btn">AC</button>
           <button class="control-btn">⌫</button>
         </div>
@@ -54,7 +54,16 @@
           <button class="btn equals" onclick="calculate()">=</button>
         </div>
       </div>
-      <!--  -->
+      <div class="history-panel" id="historyPanel">
+        <div class="history-header">
+          <h2 class="history-title">History</h2>
+          <button class="close-history" onclick="closeHistory()">×</button>
+        </div>
+        <div></div>
+        <button class="clear-history" >
+          Clear History
+        </button>
+      </div>
     </div>
 
     <script src="script.js"></script>
