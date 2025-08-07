@@ -87,97 +87,97 @@ function isIncompleteExpression(expr) {
 // Expression management
 
 function addToExpression(value) {
-  animateButton();
-
-  if (["+", "-", "*", "/", "%"].includes(value)) {
-   
-    if (currentExpression && !["+", "-", "*", "/", "%", "("].includes(currentExpression.slice(-1))) {
+            animateButton();
+            
+            if (["+", "-", "*", "/", "%"].includes(value)) {
+                
+                if (currentExpression && !["+", "-", "*", "/", "%", "("].includes(currentExpression.slice(-1))) {
                     currentExpression += value;
                 }
             }
-  else {
-    currentExpression += value;
-  }
+            else {
+                currentExpression += value;
+            }
+            
+            updateDisplay();
+        }
 
-  updateDisplay();
-}
+        function deleteLast() {
+            currentExpression = currentExpression.slice(0, -1);
+            updateDisplay();
+        }
 
-function deleteLast() {
-  currentExpression = currentExpression.slice(0, -1);
-  updateDisplay();
-}
-
-function clearAll() {
-  currentExpression = "";
-  updateDisplay();
-}
+        function clearAll() {
+            currentExpression = "";
+            updateDisplay();
+        }
 
 // Calculation logic
 
-function calculate() {
-  if (!currentExpression) return;
+        function calculate() {
+            if (!currentExpression) return;
+            
+            try {
+                // Check if expression is incomplete (ends with operator)
+                if (isIncompleteExpression(currentExpression)) {
+                    animateError();
+                    const resultEl = document.getElementById("result");
+                    resultEl.textContent = "Error";
+                    resultEl.classList.add("error");
+                    return;
+                }
+                
+                const result = evaluateExpression(currentExpression);
+                
+                if (result !== null && isFinite(result)) {
+                    addToHistory(currentExpression, result);
+                    currentExpression = result.toString();
+                    updateDisplay();
+                    animateSuccess();
+                } else {
+                    throw new Error("Invalid calculation");
+                }
+            } catch (e) {
+                animateError();
+            }
+        }
 
-  try {
-    // Check if expression is incomplete (ends with operator)
-    if (isIncompleteExpression(currentExpression)) {
-      animateError();
-      const resultEl = document.getElementById("result");
-      resultEl.textContent = "Error";
-      resultEl.classList.add("error");
-      return;
-    }
 
-    const result = evaluateExpression(currentExpression);
+        function evaluateExpression(expr) {
+            try {
+                // Replace display symbols with actual operators
+                let cleanExpr = expr
+                    .replace(/×/g, "*")
+                    .replace(/÷/g, "/")
+                    .replace(/[^0-9+\-*/.()%\s]/g, "");
+                
+                // Handle percentage
+                cleanExpr = cleanExpr.replace(/(\d+(?:\.\d+)?)%/g, "($1/100)");
+                
+                // Validate expression
+                if (!isValidExpression(cleanExpr)) {
+                    throw new Error("Invalid expression");
+                }
+                
+                // Use Function constructor instead of eval for safety
+                return Function('"use strict"; return (' + cleanExpr + ')')();
+            } catch (e) {
+                throw new Error("Calculation error");
+            }
+        }
 
-    if (result !== null && isFinite(result)) {
-      addToHistory(currentExpression, result);
-      currentExpression = result.toString();
-      updateDisplay();
-      animateSuccess();
-    } else {
-      throw new Error("Invalid calculation");
-    }
-  } catch (e) {
-    animateError();
-  }
-}
+        function isValidExpression(expr) {
+            // Basic validation to prevent code injection
+            const allowedChars = /^[0-9+\-*/.()%\s]+$/;
+            return allowedChars.test(expr) && expr.trim() !== "";
+        }
 
-
-function evaluateExpression(expr) {
-  try {
-    // Replace display symbols with actual operators
-    let cleanExpr = expr
-      .replace(/×/g, "*")
-      .replace(/÷/g, "/")
-      .replace(/[^0-9+\-*/.()%\s]/g, "");
-
-    // Handle percentage
-    cleanExpr = cleanExpr.replace(/(\d+(?:\.\d+)?)%/g, "($1/100)");
-
-    // Validate expression
-    if (!isValidExpression(cleanExpr)) {
-      throw new Error("Invalid expression");
-    }
-
-    // Use Function constructor instead of eval for safety
-    return Function('"use strict"; return (" + cleanExpr + ")')();
-  } catch (e) {
-    throw new Error("Calculation error");
-  }
-}
-
-function isValidExpression(expr) {
-  // Basic validation to prevent code injection
-  const allowedChars = /^[0-9+\-*/.()%\s]+$/;
-  return allowedChars.test(expr) && expr.trim() !== "";
-}
-
-function formatNumber(num) {
-  if (Number.isInteger(num)) {
-    return num.toString();
-  }
-  return parseFloat(num.toFixed(10)).toString();
-}
+        function formatNumber(num) {
+            if (Number.isInteger(num)) {
+                return num.toString();
+            }
+            return parseFloat(num.toFixed(10)).toString();
+        }
 
 // History management
 // Use double quotation marks for strings 😢
@@ -223,3 +223,18 @@ function animateButton() {
   });
 }
 
+function animateSuccess() {
+            const result = document.getElementById("result");
+            result.classList.add("success-animation");
+            setTimeout(() => {
+                result.classList.remove("success-animation");
+            }, 300);
+        }
+
+        function animateError() {
+            const result = document.getElementById("result");
+            result.classList.add("error");
+            setTimeout(() => {
+                result.classList.remove("error");
+            }, 500);
+        }
