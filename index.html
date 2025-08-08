@@ -23,9 +23,11 @@
 
         <div class="controls">
           <button class="control-btn" onclick="copyResult()">📋 Copy</button>
-                <button class="control-btn" onclick="toggleHistory()">📜 History</button>
-                <button class="control-btn" onclick="clearAll()">AC</button>
-                <button class="control-btn" onclick="deleteLast()">⌫</button>
+          <button class="control-btn" onclick="toggleHistory()">
+            📜 History
+          </button>
+          <button class="control-btn" onclick="clearAll()">AC</button>
+          <button class="control-btn" onclick="deleteLast()">⌫</button>
         </div>
 
         <div class="button-grid">
@@ -59,8 +61,8 @@
           <h2 class="history-title">History</h2>
           <button class="close-history" onclick="closeHistory()">×</button>
         </div>
-        <div></div>
-        <button class="clear-history" >
+        <div id="history-list"></div>
+        <button class="clear-history" onclick="clearHistory()">
           Clear History
         </button>
       </div>
