@@ -217,6 +217,41 @@ function addToHistory(expression, result) {
   renderHistory();
 }
 
+function renderHistory() {
+  const historyList = document.getElementById("history-list");
+
+  if (history.length === 0) {
+    historyList.innerHTML =
+      '<div style="text-align: center; opacity: 0.5; padding: 20px;">No calculations yet</div>';
+    return;
+  }
+
+  historyList.innerHTML = history
+    .map(
+      (item) => `
+                <div class="history-item" onclick="useHistoryItem('${
+                  item.result
+                }')">
+                    <div class="history-expression">${item.expression}</div>
+                    <div class="history-result">= ${formatNumber(
+                      item.result
+                    )}</div>
+                </div>
+            `
+    )
+    .join("");
+}
+
+function useHistoryItem(result) {
+  currentExpression = result;
+  updateDisplay();
+}
+
+function clearHistory() {
+  history = [];
+  localStorage.removeItem("calcHistory");
+  renderHistory();
+}
 
 // Useful function button
 function copyResult() {
