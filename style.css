@@ -371,3 +371,38 @@ body {
   transform: translateY(-2px);
 }
 
+.error {
+            color: var(--error-color) !important;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .success-animation {
+            animation: pulse 0.3s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .calculator {
+                width: 90%;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            
+            .history-panel {
+                width: 90%;
+                max-width: 350px;
+            }
+        }
+
+        
