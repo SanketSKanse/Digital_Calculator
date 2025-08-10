@@ -294,3 +294,46 @@ function animateError() {
     result.classList.remove("error");
   }, 500);
 }
+
+// Keyboard numbers support
+
+document.addEventListener("keydown", function (event) {
+  event.preventDefault();
+
+  const key = event.key;
+
+  
+  if (key >= "0" && key <= "9") {
+    addToExpression(key);
+  }
+  
+  else if (key === "+") {
+    addToExpression("+");
+  } else if (key === "-") {
+    addToExpression("-");
+  } else if (key === "*") {
+    addToExpression("*");
+  } else if (key === "/") {
+    addToExpression("/");
+  } else if (key === "%") {
+    addToExpression("%");
+  } else if (key === ".") {
+    addToExpression(".");
+  } else if (key === "(" || key === ")") {
+    addToExpression(key);
+  }
+  
+  // Control keys
+  else if (key === "Enter") {
+    calculate();
+  } else if (key === "Backspace") {
+    deleteLast();
+  } else if (key === "Escape") {
+    clearAll();
+  } else if (key === "c" || key === "C") {
+    copyResult();
+  }
+});
+
+//button animation 
+document.addEventListener("DOMContentLoaded", animateButton);
