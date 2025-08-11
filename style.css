@@ -405,4 +405,21 @@ body {
             }
         }
 
-        
+        /* Scroll styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }  
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary-bg);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--glow-color);
+        }
